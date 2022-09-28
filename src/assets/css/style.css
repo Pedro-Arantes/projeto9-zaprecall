@@ -248,7 +248,7 @@ img.icone {
 
 
 .icone .erro {
-  color: var(--nao-lembrei);
+  color: var(--cor-nao-lembrei);
 }
 
 .icone .duvida {
@@ -268,13 +268,30 @@ img.icone {
 }
 
 #error{
-    color:var(--nao-lembrei);
+    color:var(--cor-nao-lembrei);
+    text-decoration: line-through;
+    
 }
 #almost{
     color: var(--cor-quase-nao-lembrei);
+    text-decoration: line-through;
+    
 }
 
 #zap{
     color: var(--cor-zap);
+    text-decoration: line-through;
+    
 }
 
+.svgError{
+    filter: invert(31%) sepia(94%) saturate(3050%) hue-rotate(342deg) brightness(102%) contrast(108%);
+}
+
+.svgAlmost{
+    filter: invert(72%) sepia(18%) saturate(5162%) hue-rotate(335deg) brightness(100%) contrast(106%);
+}
+
+.svgZap{
+    filter: invert(59%) sepia(10%) saturate(3410%) hue-rotate(72deg) brightness(99%) contrast(88%);
+}

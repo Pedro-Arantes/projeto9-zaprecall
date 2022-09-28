@@ -6,15 +6,21 @@ import Main from './Main';
 
 export default function App() {
 
-    
+    const [contador, setContador] = React.useState(0)
+
+    const AddCount =() =>{
+        let c = contador+1;
+        setContador(c);
+        console.log(c);
+    }
 
     
 
     return (
         <>
             <Header/>
-            <Main  deck = {deck1}/>
-            <Footer NumPerg = {deck1.length}/>
+            <Main AddCount={AddCount} deck = {deck1}/>
+            <Footer count={contador} NumPerg = {deck1.length}/>
         </>
     )
 }
