@@ -13,11 +13,7 @@ const deck1 = [
     },
     {
         quest: "Podemos colocar __ dentro do JSX",
-        answer: "Uma extensão de linguagem do JavaScript"
-    },
-    {
-        quest: "expressões",
-        answer: "Uma extensão de linguagem do JavaScript"
+        answer: "expressões"
     },
     {
         quest: "O ReactDOM nos ajuda __ ",

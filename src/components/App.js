@@ -4,24 +4,32 @@ import Footer from './Footer';
 import Header from './Header';
 import Main from './Main';
 import styled from 'styled-components';
+import Home from './Home';
 
 export default function App() {
 
     const [contador, setContador] = React.useState(0)
+    const [statHome, setHome] = React.useState("");
 
     const AddCount = () => {
         let c = contador + 1;
         setContador(c);
         console.log(c);
     }
+    
 
+    const IniciaJogo = () => {
+        setHome("hidden")
+    }
 
 
     return (
         <>
-            <Header />
+            <Home  statHome={statHome} IniciaJogo={IniciaJogo}  />
+            <Header statHome={statHome} />
             <Main AddCount={AddCount} deck={deck1} />
-            <Footer count={contador} NumPerg={deck1.length} />
+            <Footer  statHome={statHome} count={contador} NumPerg={deck1.length} />
+            
         </>
     )
 }

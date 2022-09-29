@@ -1,10 +1,10 @@
 import logo from "../assets/img/logo.png"
 import styled from 'styled-components';
 
-export default function Header() {
+export default function Header({statHome}) {
 
     return (
-        <HeaderStyle>
+        <HeaderStyle home={statHome}>
             <div>
                 <img src={logo} alt="logo"></img>
                 <h1>ZapRecall</h1>
@@ -21,7 +21,7 @@ const HeaderStyle = styled.header`
     top: 0;
     left: 0;
     right: 0;
-    display: flex;
+    display: ${props=>props.home === "" ? "none": "flex"};
     justify-content: center;
     align-items: center;
     

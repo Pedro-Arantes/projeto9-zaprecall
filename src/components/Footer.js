@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-export default function Footer({NumPerg,count}) {
+export default function Footer({NumPerg,count,statHome}) {
 
     return (
-        <FooterStyle>
+        <FooterStyle home={statHome}>
             <h4>{count}/{NumPerg} concluidos</h4>
         </FooterStyle>
     )
@@ -24,7 +24,7 @@ const FooterStyle = styled.footer`
     color: black;
     position: fixed;
     text-align: center;
-    display: flex;
+    display: ${props=>props.home === "" ? "none": "flex"};
     flex-direction: column;
     gap: 20px;
 
