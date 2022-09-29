@@ -52,18 +52,18 @@ export default function Flashcard({ Quest, Answer, index, AddCount }) {
 
 
         switch (classe) {
-            case "error":
+            case "#FF3030":
                 setIcon(close);
                 setSvg("svgError");
 
                 break;
-            case "almost":
+            case "#FF922E":
                 setIcon(help);
                 setSvg("svgAlmost");
 
 
                 break;
-            case "zap":
+            case "#2FBE34":
                 setIcon(check);
                 setSvg("svgZap");
 
@@ -74,36 +74,36 @@ export default function Flashcard({ Quest, Answer, index, AddCount }) {
 
 
     }
-    //className={`flashcard  ${statAbert} ${statClassResp}`}
+    //div className='divPergunta' id={statPerg}
     return (
-        <FlashCard className={`flashcard  ${statAbert} ${statClassResp}`}>
-            <p className={`${statFlash} `} id={color}>Pergunta {index + 1}  </p>
-            <img onClick={() => AbreFlash()} className={`icone ${statFlash} ${svg}`} alt="play-icone" src={icon} ></img>
+        <FlashCard  aberto={statAbert} className={`flashcard   ${statClassResp}`}>
+            <PadraoP flash={statFlash} color={color}>Pergunta {index + 1}  </PadraoP>
+            <ImgPlay onClick={() => AbreFlash()} className={svg} flash={statFlash} alt="play-icone" src={icon} ></ImgPlay>
 
-            <div className='divPergunta' id={statPerg}>
-                <p className=''>{Quest} </p>
-            </div>
+            <DivPergunta id= {statPerg}>
+                <p>{Quest} </p>
+            </DivPergunta>
 
-            <div className='' id={statPerg}>
-                <img onClick={ViraFlash} className='' alt="icone-seta-gira" src={giraSeta}></img>
-            </div>
+            <DivSetaGira aberto={statAbert} id={statPerg}>
+                <ImgGiraSeta onClick={ViraFlash} alt="icone-seta-gira" src={giraSeta}></ImgGiraSeta>
+            </DivSetaGira>
 
-            <div className={`respDiv ${statResp}`}>
+            <DivPadrao resp={statResp}>
                 <div>
-                    <p className='divPergunta'>{Answer} </p>
+                    <PerguntaP>{Answer} </PerguntaP>
                 </div>
                 <BtnResp>
-                    <Button onClick={() => BtnVerify("error")} cor="#FF3030">
+                    <Button onClick={() => BtnVerify("#FF3030")} cor="#FF3030">
                         Não Lembrei
                     </Button>
-                    <Button onClick={() => BtnVerify('almost')} cor='#FF922E'>
+                    <Button onClick={() => BtnVerify('#FF922E')} cor='#FF922E'>
                         Quase não Lembrei
                     </Button>
-                    <Button onClick={() => BtnVerify('zap')} cor=' #2FBE34'>
+                    <Button onClick={() => BtnVerify('#2FBE34')} cor=' #2FBE34'>
                         Zap!
                     </Button>
                 </BtnResp>
-            </div>
+            </DivPadrao>
         </FlashCard>
     )
 }
@@ -133,117 +133,74 @@ const Button = styled.button`
        
 
 `
-
 const BtnResp = styled.div`
     display: flex;
     gap: 10px;
+`
+
+const DivPergunta = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+`
+const PerguntaP = styled.p`
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+`
+const PadraoP = styled.p`
+
+display: ${props=>props.flash=== "hidden" ?  "none" : "flex"};
+color: ${props=> props.color};
+text-decoration:${props=> props.color !== "" ? "line-through": ""} ;
+`
+const DivPadrao = styled.div`
+display: ${props=>props.resp=== "hidden" ?  "none" : "flex"}  ;
+flex-direction: column;
+justify-content: space-between;
+gap: 20px;
+
+`
+const DivSetaGira = styled.div`
+
+    width: 100%;
+    
+    display: flex;
+    justify-content:  ${props=>props.aberto === "aberto" ?  "flex-end" : ""}  ;
+`
+const ImgGiraSeta = styled.img`
+    color: var(--preto);
+`
+const ImgPlay = styled.img`
+    color: var(--preto);
+  width: 23px;
+  height: 23px;
+  display: ${props=>props.flash === "hidden" ?  "none" : ""};
 `
 const FlashCard = styled.div`
 
     width: 300px;
     height: 50px;
     display: flex;
+    flex-direction: ${props=>props.aberto === "aberto" ?  "column" : "row"};
     justify-content: space-between;
     align-items: center;
     background-color: white;
     color: black;
     border-radius: 5px;
     margin: 10px 0px;
-    padding: 10px 10px;
-    cursor: pointer;
+    padding: ${props=>props.aberto === "aberto" ?  "20px 10px" : "10px 10px"};
+    min-height: ${props=>props.aberto === "aberto" ?  "130px" : "50px"};
+    cursor: ${props=>props.aberto === "aberto" ?  "default" : "pointer"};
     font-family: 'Recursive', cursive;
 
     box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
-
-
-
-  &.aberto {
-    min-height: 130px;
-    display: flex;
-    flex-direction: column;
-    
-    background-color: var(--cor-fundo-card);
-    cursor: default;
-    padding: 20px 10px;
-  }
-
-  &.aberto div {
-    width: 100%;
-    
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  &.aberto  > .hidden{
-    display: none;
-  }
-
-  &.aberto > .divPergunta{
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-  }
-
-  div > .divPergunta{
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-  }
-  
-  
-  
-  &.aberto.resposta  > div {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  &.aberto img {
-    cursor: pointer;
-  }
-
-  &.aberto.resposta   > .respDiv{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-img.icone {
-  color: var(--preto);
-  width: 23px;
-  height: 23px;
-}
-
- .icone svg {
-  width: 23px;
-  height: 23px;
-}
 
 #hidden{
     display: none;
 }
 .hidden{
     display: none;
-}
-
-#error{
-    color:var(--cor-nao-lembrei);
-    text-decoration: line-through;
-    
-}
-#almost{
-    color: var(--cor-quase-nao-lembrei);
-    text-decoration: line-through;
-    
-}
-
-#zap{
-    color: var(--cor-zap);
-    text-decoration: line-through;
-    
 }
 
 .svgError{
@@ -257,5 +214,4 @@ img.icone {
 .svgZap{
     filter: invert(59%) sepia(10%) saturate(3410%) hue-rotate(72deg) brightness(99%) contrast(88%);
 }
-
 `

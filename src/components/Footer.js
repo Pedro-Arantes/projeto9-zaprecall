@@ -4,7 +4,7 @@ export default function Footer({NumPerg,count}) {
 
     return (
         <FooterStyle>
-            <h4>{count}/{NumPerg-1} concluidos</h4>
+            <h4>{count}/{NumPerg} concluidos</h4>
         </FooterStyle>
     )
 }
